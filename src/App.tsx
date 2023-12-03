@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -9,8 +10,10 @@ import Link from '@mui/material/Link';
 import Appbar from './Appbar';
 import Navbar from './Navbar';
 import Profile from './Profile';
+import Authentication from './Authentication';
 import NewNotes from './NewNotes';
 import MyNotes from './MyNotes';
+import useApiKey from './useApiKey';
 
 function Copyright(props: any) {
   return (
@@ -29,10 +32,16 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function App() {
+  const { apiKey, setApiKey } = useApiKey();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  // The user isn't logged in. Show the login page until we have an API key.
+  if (apiKey === "") {
+    return <Authentication setApiKey={setApiKey} />
+  }
 
   let Content = NewNotes;
   switch (window.location.pathname) {
