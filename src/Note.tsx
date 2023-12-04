@@ -110,7 +110,7 @@ export default function Note(
                     <StyledRating
                         max={3}
                         name="highlight-selected-only"
-                        defaultValue={vote.Valid ? vote.Int32 : null}
+                        defaultValue={vote?.Valid ? vote.Int32 : null}
                         onChange={(event, vote) => {
                             console.log(vote);
                             voteOnNote(apiKey, note_id, vote as number).then((response) => {
