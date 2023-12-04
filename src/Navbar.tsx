@@ -66,31 +66,6 @@ const mainListItems = (
         </ListItemButton>
     </>
 );
-const secondaryListItems = (
-    <>
-        <ListSubheader component="div" inset>
-            Saved reports
-        </ListSubheader>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Current month" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Last quarter" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
-        </ListItemButton>
-    </>
-);
 
 export default function Navbar(
     { toggleDrawer, open }: { toggleDrawer: () => void, open: boolean }
@@ -113,8 +88,6 @@ export default function Navbar(
                 <Divider />
                 <List component="nav">
                     {mainListItems}
-                    <Divider sx={{ my: 1 }} />
-                    {secondaryListItems}
                 </List>
             </Drawer>
         </>);
