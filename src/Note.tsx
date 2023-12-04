@@ -125,7 +125,7 @@ export default function Note(
                         getLabelText={(value: number) => customIcons[value].label}
                         highlightSelectedOnly
                     />
-                    <Alert severity={notification.severity as AlertColor}>{notification.text}</Alert>
+                    {notification.severity !== "" && <Alert severity={notification.severity as AlertColor}>{notification.text}</Alert>}
                 </Grid>
             </Grid>
         </StyledPaper>

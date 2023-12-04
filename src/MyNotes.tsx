@@ -39,15 +39,14 @@ export default function MyNotes() {
                 <Alert severity="info">"Nobody has posted a note for this page."</Alert>
                 :
                 notes.length > 0 && notes.map((note) => (
-                    <>
-                        <Note note_id={note.id}
-                            text={note.note}
-                            url={note.url}
-                            vote={note.vote}
-                            updatedAt={note.updated_at.Valid && note.updated_at.Time}
-                            createdAt={note.created_at}
-                            createdBy={note.user_name} />
-                    </>
+                    <Note key={note.id}
+                        note_id={note.id}
+                        text={note.note}
+                        url={note.url}
+                        vote={note.vote}
+                        updatedAt={note.updated_at.Valid && note.updated_at.Time}
+                        createdAt={note.created_at}
+                        createdBy={note.user_name} />
                 ))
             }
         </>
