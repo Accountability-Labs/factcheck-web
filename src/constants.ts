@@ -4,6 +4,7 @@ export const extName = "FactCheck"
 
 // Path and method of our API endpoints.
 export const api = {
+    getStats: { method: "GET", path: "/stats" },
     postMyNotes: { method: "POST", path: "/my-notes" },
     postNewNotes: { method: "POST", path: "/new-notes" },
     postNote: { method: "POST", path: "/note" },
@@ -15,6 +16,7 @@ export const api = {
 
 // Human-readable error prefixes for each API endpoint.
 export const apiErrPrefix = {
+    [api.getStats.path]: "Failed to fetch stats: ",
     [api.postMyNotes.path]: "Failed to fetch my notes: ",
     [api.postNewNotes.path]: "Failed to fetch new notes: ",
     [api.postNote.path]: "Failed to post note: ",

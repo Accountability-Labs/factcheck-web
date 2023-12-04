@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Appbar from './Appbar';
 import Navbar from './Navbar';
-import Profile from './Profile';
+import Stats from './Stats';
 import Authentication from './Authentication';
 import NewNotes from './NewNotes';
 import MyNotes from './MyNotes';
@@ -48,8 +48,8 @@ export default function App() {
     case "/my-notes":
       Content = MyNotes;
       break;
-    case "/profile":
-      Content = Profile;
+    case "/stats":
+      Content = Stats;
       break;
   }
 

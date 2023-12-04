@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
-import PersonIcon from '@mui/icons-material/Person';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import CommentIcon from '@mui/icons-material/Comment';
 
 import { styled } from '@mui/material/styles';
@@ -58,11 +58,11 @@ const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="My notes" />
         </ListItemButton>
-        <ListItemButton component="a" href="/profile">
+        <ListItemButton component="a" href="/stats">
             <ListItemIcon>
-                <PersonIcon />
+                <LeaderboardIcon />
             </ListItemIcon>
-            <ListItemText primary="My profile" />
+            <ListItemText primary="Stats" />
         </ListItemButton>
     </>
 );
