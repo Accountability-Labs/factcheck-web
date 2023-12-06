@@ -19,7 +19,8 @@ async function fetchNewNotes(apiKey: string) {
     } catch (err) {
         return { "error": "error talking to backend" };
     }
-    return response.json()
+    const jsonResp = await response.json();
+    return jsonResp.data;
 }
 
 export default function NewNotes() {
