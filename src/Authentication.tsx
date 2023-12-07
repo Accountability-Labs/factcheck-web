@@ -94,6 +94,7 @@ export default function Authentication(
                                     autoComplete="password"
                                     name="password"
                                     id="password"
+                                    type="password"
                                     label="Password"
                                 />
                             </Grid>
