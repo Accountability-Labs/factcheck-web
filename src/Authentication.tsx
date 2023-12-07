@@ -53,7 +53,7 @@ export default function Authentication(
         setSeverity("success");
         setText("Successfully logged in!");
         setTimeout(() => {
-            setApiKey(userData["api_key"]);
+            setApiKey(userData.data["api_key"]);
         }, 1000);
     }
 
