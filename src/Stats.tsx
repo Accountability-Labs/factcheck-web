@@ -1,48 +1,52 @@
 import { useState, useEffect } from 'react';
-import { Backend, api } from './constants';
 import { Grid, Typography } from '@mui/material';
-
-async function fetchStats() {
-    let response: Response;
-    try {
-        response = await fetch(Backend + api.getStats.path, {
-            method: api.getStats.method,
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-    } catch (err) {
-        return { "error": "error talking to backend" };
-    }
-    const jsonResp = await response.json();
-    return jsonResp.data;
-}
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import { AlertParams, api } from './constants';
+import { fetchFromApi } from './util';
 
 export default function Stats() {
-    //const [notes, setNotes] = useState<any[]>([]);
     const [stats, setStats] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [alert, setAlert] = useState<AlertParams>({
+        type: "info",
+        text: "Stats are unavailable."
+    });
 
     useEffect(() => {
         console.log("Fetching stats.");
-        fetchStats().then((stats) => {
-            setStats(stats);
-            console.log(stats);
+        fetchFromApi(api.getStats).then((response) => {
+            setLoading(false);
+            if ("error" in response) {
+                setAlert({ type: "error", text: response["error"] })
+            } else {
+                setStats(response.data);
+            }
         });
     }, []);
     return (
         <>
             <h1>Stats</h1>
-            <Grid container columns={3}>
-                <Grid item xs={1} md={1} sm={1}>
-                    <Typography fontWeight="light" fontSize="1em"># of users: {stats?.num_users}</Typography>
+            {loading ?
+                <Grid container justifyContent="center">
+                    <CircularProgress />
                 </Grid>
-                <Grid item xs={1} md={1} sm={1}>
-                    <Typography fontWeight="light" fontSize="1em"># of notes: {stats?.num_notes}</Typography>
-                </Grid>
-                <Grid item xs={1} md={1} sm={1}>
-                    <Typography fontWeight="light" fontSize="1em"># of votes: {stats?.num_votes}</Typography>
-                </Grid>
-            </Grid>
+                :
+                stats === null ?
+                    <Alert severity={alert.type}>{alert.text}</Alert>
+                    :
+                    <Grid container columns={3}>
+                        <Grid item xs={1} md={1} sm={1}>
+                            <Typography fontWeight="light" fontSize="1em"># of users: {stats?.num_users}</Typography>
+                        </Grid>
+                        <Grid item xs={1} md={1} sm={1}>
+                            <Typography fontWeight="light" fontSize="1em"># of notes: {stats?.num_notes}</Typography>
+                        </Grid>
+                        <Grid item xs={1} md={1} sm={1}>
+                            <Typography fontWeight="light" fontSize="1em"># of votes: {stats?.num_votes}</Typography>
+                        </Grid>
+                    </Grid>
+            }
         </>
     )
 }

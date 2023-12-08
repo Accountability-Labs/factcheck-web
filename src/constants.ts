@@ -1,6 +1,18 @@
+import { AlertColor } from '@mui/material/Alert';
+
 export const ApiKey = "api_key";
 export const Backend = "https://factcheck-api.nymity.ch";
 export const extName = "FactCheck"
+
+export type AlertParams = {
+    type: AlertColor;
+    text: string;
+}
+
+export type Endpoint = {
+    method: string,
+    path: string,
+};
 
 // Path and method of our API endpoints.
 export const api = {

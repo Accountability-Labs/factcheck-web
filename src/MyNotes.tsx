@@ -1,54 +1,58 @@
 import { useState, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
-import { Backend, api } from './constants';
+import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
+import { api, AlertParams } from './constants';
 import useApiKey from './useApiKey';
 import Note from './Note';
-
-async function fetchMyNotes(apiKey: string) {
-    let response: Response;
-    try {
-        response = await fetch(Backend + api.postMyNotes.path, {
-            method: api.postMyNotes.method,
-            headers: {
-                "Content-Type": "application/json",
-                "X-Auth-Token": apiKey,
-            },
-            body: JSON.stringify({ "limit": 20 })
-        })
-    } catch (err) {
-        return { "error": "error talking to backend" };
-    }
-    const jsonResp = await response.json();
-    return jsonResp.data;
-}
+import { fetchFromApi } from './util';
 
 export default function MyNotes() {
     const { apiKey } = useApiKey();
     const [notes, setNotes] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [alert, setAlert] = useState<AlertParams>({
+        type: "info",
+        text: "You have not posted any notes yet."
+    });
 
     useEffect(() => {
         console.log("Fetching my notes.");
-        fetchMyNotes(apiKey).then((notes) => {
-            setNotes(notes);
-            console.log(notes);
+        fetchFromApi(
+            api.postMyNotes,
+            JSON.stringify({ "limit": 20 }),
+            apiKey,
+        ).then((response) => {
+            setLoading(false);
+            if ("error" in response) {
+                setAlert({ type: "error", text: response["error"] })
+            } else {
+                setNotes(response.data);
+            }
         });
     }, [apiKey]);
+
     return (
         <>
             <h1>My Notes</h1>
-            {notes.hasOwnProperty("length") && notes.length === 0 ?
-                <Alert severity="info">"Nobody has posted a note for this page."</Alert>
+            {loading ?
+                <Grid container justifyContent="center">
+                    <CircularProgress />
+                </Grid>
                 :
-                notes.length > 0 && notes.map((note) => (
-                    <Note key={note.id}
-                        note_id={note.id}
-                        text={note.note}
-                        url={note.url}
-                        vote={note.vote}
-                        updatedAt={note.updated_at.Valid && note.updated_at.Time}
-                        createdAt={note.created_at}
-                        createdBy={note.user_name} />
-                ))
+                notes.length === 0 ?
+                    <Alert severity={alert.type}>{alert.text}</Alert>
+                    :
+                    notes.length > 0 && notes.map((note) => (
+                        <Note key={note.id}
+                            note_id={note.id}
+                            text={note.note}
+                            url={note.url}
+                            vote={note.vote}
+                            updatedAt={note.updated_at.Valid && note.updated_at.Time}
+                            createdAt={note.created_at}
+                            createdBy={note.user_name} />
+                    ))
             }
         </>
     )
