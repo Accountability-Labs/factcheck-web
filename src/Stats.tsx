@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import Paper from '@mui/material/Paper';
 import { AlertParams, api } from './constants';
 import { fetchFromApi } from './util';
 
@@ -12,6 +13,7 @@ export default function Stats() {
         type: "info",
         text: "Stats are unavailable."
     });
+    const paperProps = { p: 2, mx: 1 };
 
     useEffect(() => {
         console.log("Fetching stats.");
@@ -37,13 +39,34 @@ export default function Stats() {
                     :
                     <Grid container columns={3}>
                         <Grid item xs={1} md={1} sm={1}>
-                            <Typography fontWeight="light" fontSize="1em"># of users: {stats?.num_users}</Typography>
+                            <Paper sx={paperProps}>
+                                <Typography variant="h3" align="center">
+                                    {stats?.num_users}
+                                </Typography>
+                                <Typography align="center">
+                                    users
+                                </Typography>
+                            </Paper>
                         </Grid>
                         <Grid item xs={1} md={1} sm={1}>
-                            <Typography fontWeight="light" fontSize="1em"># of notes: {stats?.num_notes}</Typography>
+                            <Paper sx={paperProps}>
+                                <Typography variant="h3" align="center">
+                                    {stats?.num_notes}
+                                </Typography>
+                                <Typography align="center">
+                                    notes
+                                </Typography>
+                            </Paper>
                         </Grid>
                         <Grid item xs={1} md={1} sm={1}>
-                            <Typography fontWeight="light" fontSize="1em"># of votes: {stats?.num_votes}</Typography>
+                            <Paper sx={paperProps}>
+                                <Typography variant="h3" align="center">
+                                    {stats?.num_votes}
+                                </Typography>
+                                <Typography align="center">
+                                    votes
+                                </Typography>
+                            </Paper>
                         </Grid>
                     </Grid>
             }
