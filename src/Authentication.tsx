@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Backend, api } from './constants';
+import Copyright from "./Copyright";
 
 const defaultTheme = createTheme();
 
@@ -108,7 +109,7 @@ export default function Authentication(
                         <Alert severity={severity as AlertColor}>{text}</Alert>
                     </Box>
                 </Box>
-                {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
+                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
     )
