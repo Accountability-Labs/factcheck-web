@@ -1,14 +1,14 @@
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
-import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import useApiKey from './useApiKey';
 
 const drawerWidth: number = 240;
-
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
 }
@@ -35,6 +35,12 @@ const AppBar = styled(MuiAppBar, {
 export default function Appbar(
     { toggleDrawer, open }: { toggleDrawer: () => void, open: boolean }
 ) {
+    const { setApiKey } = useApiKey();
+    const logout = () => {
+        setApiKey("");
+        window.location.reload();
+    };
+
     return (
         <AppBar position="absolute" open={open}>
             <Toolbar
@@ -63,11 +69,11 @@ export default function Appbar(
                 >
                     Dashboard
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
+                <Tooltip title="Log out">
+                    <IconButton color="inherit">
+                        <LogoutIcon onClick={logout} />
+                    </IconButton>
+                </Tooltip>
             </Toolbar>
         </AppBar>
     )
