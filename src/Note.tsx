@@ -103,7 +103,7 @@ export default function Note(
                 <Grid item xs={1} md={1} sm={1}>
                     <Typography fontWeight="light" fontSize="1em">{createdBy}</Typography>
                 </Grid>
-                <Grid item xs={3} md={3} sm={3}>
+                <Grid item xs={3} md={3} sm={3} sx={{ my: 2 }}>
                     <Typography variant="body2">{text}</Typography>
                 </Grid>
                 <Grid item xs={3} md={3} sm={3}>
