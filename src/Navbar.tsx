@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import ArticleIcon from '@mui/icons-material/Article';
 import ListItemText from '@mui/material/ListItemText';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
@@ -61,6 +62,12 @@ const mainListItems = (
                 <LeaderboardIcon />
             </ListItemIcon>
             <ListItemText primary="Stats" />
+        </ListItemButton>
+        <ListItemButton component="a" href="/docs">
+            <ListItemIcon>
+                <ArticleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Docs" />
         </ListItemButton>
     </>
 );

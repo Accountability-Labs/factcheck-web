@@ -10,6 +10,7 @@ import Stats from './Stats';
 import Authentication from './Authentication';
 import NewNotes from './NewNotes';
 import MyNotes from './MyNotes';
+import Docs from './Docs';
 import useApiKey from './useApiKey';
 import Copyright from "./Copyright";
 
@@ -35,6 +36,9 @@ export default function App() {
       break;
     case "/stats":
       Content = Stats;
+      break;
+    case "/docs":
+      Content = Docs;
       break;
   }
 
