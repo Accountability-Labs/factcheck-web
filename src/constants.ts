@@ -1,8 +1,8 @@
 import { AlertColor } from '@mui/material/Alert';
 
 export const ApiKey = "api_key";
-export const Backend = "https://factcheck-api.nymity.ch";
-export const extName = "FactCheck"
+export const Backend = "https://vox-api.nymity.ch";
+export const extName = "Vox"
 
 export type AlertParams = {
     type: AlertColor;
