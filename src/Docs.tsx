@@ -60,7 +60,21 @@ export default function Docs() {
                     Below are some examples of pages for which users have
                     added notes:
                     <ul>
-                        <li><Link href="https://www.nytimes.com/2017/08/15/us/politics/trump-charlottesville-white-nationalists.html">nytimes.com</Link></li>
+                        <li>
+                            <Link href="https://www.nbcnews.com/politics/2016-election/trump-s-worst-offense-mocking-disabled-reporter-poll-finds-n627736">
+                                NBC News
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="https://www.nytimes.com/2017/08/15/us/politics/trump-charlottesville-white-nationalists.html">
+                                New York Times
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="https://www.denver7.com/news/national/tesla-recalls-nearly-all-vehicles-sold-in-us-to-fix-system-that-monitors-drivers-using-autopilot">
+                                Denver 7
+                            </Link>
+                        </li>
                     </ul>
                 </p>
             </Paper>
