@@ -15,7 +15,7 @@ export async function fetchFromApi(endpoint: Endpoint, body?: string, apiKey?: s
             body: body,
         })
     } catch (err) {
-        return { "error": "error talking to backend" };
+        return { "error": "Error talking to backend." };
     }
     return await response.json();
 }
